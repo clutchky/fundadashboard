@@ -1,9 +1,12 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { getStock } from "../services/apiStocks";
+import IncomeStatement from "./IncomeStatement";
 
 function Stock() {
   const stock = useLoaderData();
+  const navigate = useNavigate();
 
+  // This must be a table
   return (
     <div>
       <Link to={-1}>Back</Link>
@@ -61,6 +64,9 @@ function Stock() {
           </li>
         ))}
       </div>
+      <button onClick={() => navigate(`/stocks/${stock.id}/new`)}>
+        Add analysis
+      </button>
     </div>
   );
 }

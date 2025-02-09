@@ -15,6 +15,7 @@ import GlobalStyles from "./styles/GlobalStyles";
 import Error from "./ui/Error";
 import StockItem from "./components/StockItem";
 import Stock, { loader as stockLoader } from "./components/Stock";
+import NewAnalysis from "./components/NewAnalysis";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
     element: <Stock />,
     loader: stockLoader,
     errorElement: <Error />,
+  },
+  {
+    path: "/stocks/:stockId/new",
+    element: <NewAnalysis />,
   },
 ]);
 
