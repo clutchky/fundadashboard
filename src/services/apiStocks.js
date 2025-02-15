@@ -15,6 +15,5 @@ export async function getStock(id) {
   if (!res.ok) throw Error("Couldn't find stock");
 
   const data = await res.json();
-  console.log(data);
   return data;
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function NewAnalysis() {
   const [year, setYear] = useState("");
@@ -53,6 +54,7 @@ function NewAnalysis() {
 
   return (
     <div>
+      <Link to={-1}>Back</Link>
       <h1>Add new analysis</h1>
       <div>
         <h3>Income Statement</h3>

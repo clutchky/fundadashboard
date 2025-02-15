@@ -1,6 +1,7 @@
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { getStock } from "../services/apiStocks";
 import IncomeStatement from "./IncomeStatement";
+import StockTable from "./StockTable";
 
 function Stock() {
   const stock = useLoaderData();
@@ -15,7 +16,9 @@ function Stock() {
         <h3>{stock.tickerSymbol}</h3>
       </div>
 
-      <div style={{ display: "flex" }}>
+      <StockTable stock={stock} />
+
+      {/* <div style={{ display: "flex" }}>
         {stock.financialData.map((data, index) => (
           <li key={index} style={{ listStyleType: "none" }}>
             <div style={{ marginBottom: "10px" }}>
@@ -63,7 +66,7 @@ function Stock() {
             </div>
           </li>
         ))}
-      </div>
+      </div> */}
       <button onClick={() => navigate(`/stocks/${stock.id}/new`)}>
         Add analysis
       </button>
