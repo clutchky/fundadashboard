@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData, useSearchParams } from "react-router-dom";
+import { getStock, addFinancialData } from "../services/apiStocks";
 
 function NewAnalysis() {
+  const stock = useLoaderData();
   const [year, setYear] = useState("");
   const [price, setPrice] = useState(0);
   const [salesRevenue, setSalesRevenue] = useState(0);
@@ -47,9 +49,8 @@ function NewAnalysis() {
       capEx,
       totalDivs,
     };
-    console.log(newStockAnalysis);
 
-    return newStockAnalysis;
+    addFinancialData(newStockAnalysis, stock.id, stock);
   }
 
   return (
@@ -64,7 +65,7 @@ function NewAnalysis() {
         <input
           type="text"
           value={year}
-          onChange={(e) => setYear(e.target.value)}
+          onChange={(e) => setYear(Number(e.target.value))}
         />
       </div>
       <div>
@@ -222,14 +223,25 @@ function NewAnalysis() {
         <input
           type="text"
           value={capEx}
-          onChange={(e) => setCapEx(e.target.value)}
+          onChange={(e) => setTotalDivs(e.target.value)}
         />
       </div>
       <div>
-        <button onClick={(e) => handleSubmit(e)}>Add analysis</button>
+        <button
+          className="border p-2.5 bg-primary"
+          onClick={(e) => handleSubmit(e)}
+        >
+          Submit analysis
+        </button>
       </div>
     </div>
   );
+}
+
+export async function loader({ params }) {
+  const stock = await getStock(params.stockId);
+
+  return stock;
 }
 
 export default NewAnalysis;

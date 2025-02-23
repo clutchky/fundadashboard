@@ -11,7 +11,6 @@ import Stocks, { loader as stocksLoader } from "./pages/Stocks";
 import Portfolio from "./pages/Portfolio";
 import Watchlist from "./pages/Watchlist";
 import PageNotFound from "./pages/PageNotFound";
-import GlobalStyles from "./styles/GlobalStyles";
 import Error from "./ui/Error";
 import StockItem from "./components/StockItem";
 import Stock, { loader as stockLoader } from "./components/Stock";
@@ -38,6 +37,16 @@ const router = createBrowserRouter([
   {
     path: "/stocks/:stockId/new",
     element: <NewAnalysis />,
+    loader: stockLoader,
+    errorElement: <Error />,
+  },
+  {
+    path: "/portfolio",
+    element: <Portfolio />,
+  },
+  {
+    path: "/watchlist",
+    element: <Watchlist />,
   },
 ]);
 
@@ -80,7 +89,6 @@ function App() {
     //   </BrowserRouter>
     // </>
     <>
-      <GlobalStyles />
       <RouterProvider router={router} />
     </>
   );

@@ -67,7 +67,10 @@ function Stock() {
           </li>
         ))}
       </div> */}
-      <button onClick={() => navigate(`/stocks/${stock.id}/new`)}>
+      <button
+        className="my-4 px-4 rounded-sm bg-primary py-1"
+        onClick={() => navigate(`/stocks/${stock.id}/new`)}
+      >
         Add analysis
       </button>
     </div>

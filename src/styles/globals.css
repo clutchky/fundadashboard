@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@layer base {
+  h1 {
+    font-size: var(--text-2xl);
+  }
+
+  h3 {
+    font-size: var(--text-xl);
+  }
+
+  label {
+    font-weight: 600;
+  }
+
+  input {
+    border-width: 1px;
+    border-radius: 0.5rem;
+    border-color: gray;
+    text-color: gray;
+    display: inline-block;
+  }
+}
+
+@theme {
+  --color-primary: #81c705;
+  --font-primary: "Inter", "sans-serif";
+}

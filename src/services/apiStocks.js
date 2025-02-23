@@ -17,3 +17,20 @@ export async function getStock(id) {
   const data = await res.json();
   return data;
 }
+
+export async function addFinancialData(newData, id, stock) {
+  const newFinancialData = [...stock.financialData, newData];
+
+  const updatedStock = {
+    ...stock,
+    financialData: newFinancialData,
+  };
+
+  const res = await fetch(`${BASE_URL}/stocks/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(updatedStock),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
