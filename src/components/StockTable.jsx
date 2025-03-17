@@ -1,6 +1,4 @@
-import { useEffect } from "react";
-import { useLoaderData } from "react-router-dom";
-import { getStock } from "../services/apiStocks";
+import { metricStrings } from "../ui/utilities";
 
 function StockTable({ stock }) {
   const financialData = stock.financialData;
@@ -9,7 +7,7 @@ function StockTable({ stock }) {
   const metrics = Object.keys(financialData[0]).filter((key) => key !== "year");
 
   // console.log(financialData);
-  console.log("financial data", financialData);
+  // console.log("financial data", financialData);
 
   return (
     <table className="table-auto border-collapse border border-gray-400">
@@ -24,16 +22,31 @@ function StockTable({ stock }) {
         </tr>
       </thead>
       <tbody>
-        {metrics.map((metric, metricIndex) => (
-          <tr className="border border-gray-300" key={metricIndex}>
-            <td className="border border-gray-300">{metric}</td>
-            {financialData.map((item, yearIndex) => (
-              <td className="border border-gray-300" key={yearIndex}>
-                {item[metric]}
-              </td>
-            ))}
-          </tr>
-        ))}
+        {metrics.map((metric, metricIndex) => {
+          const label = metricStrings[metric] || metric;
+
+          return (
+            <tr className="border border-gray-300" key={metricIndex}>
+              <td className="border border-gray-300">{label}</td>
+              {financialData.map((item, yearIndex) => {
+                const value = item[metric];
+
+                const displayValue =
+                  metric === "cashflowGtLongTermDebt"
+                    ? value
+                      ? "yes"
+                      : "no"
+                    : value;
+
+                return (
+                  <td className="border border-gray-300" key={yearIndex}>
+                    {displayValue}
+                  </td>
+                );
+              })}
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );

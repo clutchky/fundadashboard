@@ -54,7 +54,7 @@
           "grossProfit": 17605,
           "operatingExpenses": 7365,
           "operatingIncome": 10240,
-          "interestExpense": 1317,
+          "interestExpenses": 1317,
           "incomeTaxes": -295,
           "netIncome": 9679,
           "earningsPerShare": 2.28,
@@ -84,6 +84,28 @@
           "dividendYield": 5.68,
           "totalDivs": 1.25,
           "divPayoutRatio": 54.82
+        },
+        {
+          "year": 2020,
+          "price": "13.78",
+          "salesRevenue": "28250",
+          "costOfRevenue": "19699",
+          "operatingExpenses": "4554",
+          "interestExpenses": "1095",
+          "incomeTaxes": "133",
+          "earningsPerShare": "0.77",
+          "otherIncome": "-578",
+          "totalAssets": "71146",
+          "totalLiabilities": "28961",
+          "currentAssets": "23299",
+          "currentLiabilities": "16521",
+          "shortTermDebts": "8214",
+          "longTermDebts": "11763",
+          "operatingCashflow": "9825",
+          "investingCashflow": "-4180",
+          "financingCashflow": "-4049",
+          "capEx": "6",
+          "totalDivs": 0
         }
       ],
       "id": "c699"
