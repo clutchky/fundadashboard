@@ -12,10 +12,11 @@ function Stock() {
     <div>
       <Link to={-1}>Back</Link>
       <div>
-        <h1>{stock.companyName}</h1>
-        <h3>{stock.tickerSymbol}</h3>
+        <h1 className="font-primary">{stock.companyName}</h1>
+        <h3 className="font-primary">{stock.tickerSymbol}</h3>
       </div>
 
+      {/* <StockTable stock={stock} /> */}
       <StockTable stock={stock} />
 
       {/* <div style={{ display: "flex" }}>

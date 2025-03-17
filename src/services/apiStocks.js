@@ -33,4 +33,8 @@ export async function addFinancialData(newData, id, stock) {
       "Content-Type": "application/json",
     },
   });
+
+  if (!res.ok) throw Error("Failed adding new financial data");
+
+  return res;
 }

@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { Link, useLoaderData, useSearchParams } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { getStock, addFinancialData } from "../services/apiStocks";
 
 function NewAnalysis() {
   const stock = useLoaderData();
+  const navigate = useNavigate();
+
   const [year, setYear] = useState("");
   const [price, setPrice] = useState(0);
   const [salesRevenue, setSalesRevenue] = useState(0);
@@ -25,7 +27,7 @@ function NewAnalysis() {
   const [capEx, setCapEx] = useState(0);
   const [totalDivs, setTotalDivs] = useState(0);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const newStockAnalysis = {
       year,
@@ -50,12 +52,14 @@ function NewAnalysis() {
       totalDivs,
     };
 
-    addFinancialData(newStockAnalysis, stock.id, stock);
+    const response = await addFinancialData(newStockAnalysis, stock.id, stock);
+
+    if (response.ok) navigate(`/stocks/${stock.id}`);
   }
 
   return (
     <div>
-      <Link to={-1}>Back</Link>
+      <Link to={`/stocks/${stock.id}`}>Back</Link>
       <h1>Add new analysis</h1>
       <div>
         <h3>Income Statement</h3>

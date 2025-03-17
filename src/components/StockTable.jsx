@@ -1,10 +1,15 @@
+import { useEffect } from "react";
+import { useLoaderData } from "react-router-dom";
+import { getStock } from "../services/apiStocks";
+
 function StockTable({ stock }) {
   const financialData = stock.financialData;
 
   const years = financialData.map((stock) => stock.year);
   const metrics = Object.keys(financialData[0]).filter((key) => key !== "year");
 
-  console.log(financialData);
+  // console.log(financialData);
+  console.log("financial data", financialData);
 
   return (
     <table className="table-auto border-collapse border border-gray-400">

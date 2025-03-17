@@ -17,7 +17,7 @@
     border-width: 1px;
     border-radius: 0.5rem;
     border-color: gray;
-    text-color: gray;
+    color: gray;
     display: inline-block;
   }
 }
