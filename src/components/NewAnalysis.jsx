@@ -29,27 +29,64 @@ function NewAnalysis() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    const grossProfit = salesRevenue - costOfRevenue;
+    const operatingIncome = grossProfit - operatingExpenses;
+    const ebit = otherIncome + operatingIncome;
+    const pERatio = price / earningsPerShare;
+    const earningsYield = (earningsPerShare / price) * 100;
+    const netIncome = ebit - incomeTaxes;
+    const gpmRatio = (grossProfit / salesRevenue) * 100;
+    const opmRatio = (operatingIncome / salesRevenue) * 100;
+    const npmRatio = (netIncome / salesRevenue) * 100;
+    const rOEquity = (netIncome / (totalAssets - totalLiabilities)) * 100;
+    const currentRatio = currentAssets / currentLiabilities;
+    const interestCoverageRatio = ebit / interestExpenses;
+    const workingCapitalDebtRatio =
+      (currentAssets - currentLiabilities) / (shortTermDebts + longTermDebts);
+    const freeCashflow = operatingCashflow - capEx;
+    const cashflowGtLongTermDebt = freeCashflow * 3 > longTermDebts;
+    const dividendYield = (price / totalDivs) * 100;
+    const divPayoutRatio = (totalDivs / earningsPerShare) * 100;
+
     const newStockAnalysis = {
       year,
-      price,
+      price: Number(price),
       salesRevenue,
       costOfRevenue,
+      grossProfit,
       operatingExpenses,
+      operatingIncome,
       interestExpenses,
       incomeTaxes,
-      earningsPerShare,
+      netIncome,
+      earningsPerShare: Number(earningsPerShare),
+      pERatio: pERatio.toFixed(2),
+      earningsYield: earningsYield.toFixed(2),
+      gpmRatio: gpmRatio.toFixed(2),
+      opmRatio: opmRatio.toFixed(2),
+      npmRatio: npmRatio.toFixed(2),
+      ebit,
       otherIncome,
       totalAssets,
       totalLiabilities,
+      rOEquity: rOEquity.toFixed(2),
       currentAssets,
       currentLiabilities,
       shortTermDebts,
       longTermDebts,
+      currentRatio: currentRatio.toFixed(2),
+      interestCoverageRatio: interestCoverageRatio.toFixed(2),
+      workingCapitalDebtRatio: workingCapitalDebtRatio.toFixed(2),
       operatingCashflow,
       investingCashflow,
-      financingCashflow,
+      financingCashflow: Number(financingCashflow),
       capEx,
-      totalDivs,
+      freeCashflow,
+      cashflowGtLongTermDebt,
+      dividendYield: dividendYield.toFixed(2),
+      totalDivs: Number(totalDivs),
+      divPayoutRatio: divPayoutRatio.toFixed(2),
     };
 
     const response = await addFinancialData(newStockAnalysis, stock.id, stock);
@@ -85,7 +122,7 @@ function NewAnalysis() {
         <input
           type="text"
           value={salesRevenue}
-          onChange={(e) => setSalesRevenue(e.target.value)}
+          onChange={(e) => setSalesRevenue(Number(e.target.value))}
         />
       </div>
       <div>
@@ -93,7 +130,7 @@ function NewAnalysis() {
         <input
           type="text"
           value={costOfRevenue}
-          onChange={(e) => setCostOfRevenue(e.target.value)}
+          onChange={(e) => setCostOfRevenue(Number(e.target.value))}
         />
       </div>
       <div>
@@ -101,7 +138,7 @@ function NewAnalysis() {
         <input
           type="text"
           value={operatingExpenses}
-          onChange={(e) => setOperatingExpenses(e.target.value)}
+          onChange={(e) => setOperatingExpenses(Number(e.target.value))}
         />
       </div>
       <div>
@@ -109,7 +146,7 @@ function NewAnalysis() {
         <input
           type="text"
           value={interestExpenses}
-          onChange={(e) => setInterestExpenses(e.target.value)}
+          onChange={(e) => setInterestExpenses(Number(e.target.value))}
         />
       </div>
       <div>
@@ -117,7 +154,7 @@ function NewAnalysis() {
         <input
           type="text"
           value={incomeTaxes}
-          onChange={(e) => setIncomeTaxes(e.target.value)}
+          onChange={(e) => setIncomeTaxes(Number(e.target.value))}
         />
       </div>
       <div>
@@ -133,7 +170,7 @@ function NewAnalysis() {
         <input
           type="text"
           value={otherIncome}
-          onChange={(e) => setOtherIncome(e.target.value)}
+          onChange={(e) => setOtherIncome(Number(e.target.value))}
         />
       </div>
       <div>
@@ -144,7 +181,7 @@ function NewAnalysis() {
         <input
           type="text"
           value={totalAssets}
-          onChange={(e) => setTotalAssets(e.target.value)}
+          onChange={(e) => setTotalAssets(Number(e.target.value))}
         />
       </div>
       <div>
@@ -152,7 +189,7 @@ function NewAnalysis() {
         <input
           type="text"
           value={totalLiabilities}
-          onChange={(e) => setTotalLiabilities(e.target.value)}
+          onChange={(e) => setTotalLiabilities(Number(e.target.value))}
         />
       </div>
       <div>
@@ -160,7 +197,7 @@ function NewAnalysis() {
         <input
           type="text"
           value={currentAssets}
-          onChange={(e) => setCurrentAssets(e.target.value)}
+          onChange={(e) => setCurrentAssets(Number(e.target.value))}
         />
       </div>
       <div>
@@ -168,7 +205,7 @@ function NewAnalysis() {
         <input
           type="text"
           value={currentLiabilities}
-          onChange={(e) => setCurrentLiabilities(e.target.value)}
+          onChange={(e) => setCurrentLiabilities(Number(e.target.value))}
         />
       </div>
       <div>
@@ -176,7 +213,7 @@ function NewAnalysis() {
         <input
           type="text"
           value={shortTermDebts}
-          onChange={(e) => setShortTermDebts(e.target.value)}
+          onChange={(e) => setShortTermDebts(Number(e.target.value))}
         />
       </div>
       <div>
@@ -184,7 +221,7 @@ function NewAnalysis() {
         <input
           type="text"
           value={longTermDebts}
-          onChange={(e) => setLongTermDebts(e.target.value)}
+          onChange={(e) => setLongTermDebts(Number(e.target.value))}
         />
       </div>
       <div>
@@ -195,7 +232,7 @@ function NewAnalysis() {
         <input
           type="text"
           value={operatingCashflow}
-          onChange={(e) => setOperatingCashflow(e.target.value)}
+          onChange={(e) => setOperatingCashflow(Number(e.target.value))}
         />
       </div>
       <div>
@@ -203,7 +240,7 @@ function NewAnalysis() {
         <input
           type="text"
           value={investingCashflow}
-          onChange={(e) => setInvestingCashflow(e.target.value)}
+          onChange={(e) => setInvestingCashflow(Number(e.target.value))}
         />
       </div>
       <div>
@@ -219,14 +256,14 @@ function NewAnalysis() {
         <input
           type="text"
           value={capEx}
-          onChange={(e) => setCapEx(e.target.value)}
+          onChange={(e) => setCapEx(Number(e.target.value))}
         />
       </div>
       <div>
         <label>Total dividends in a year:</label>
         <input
           type="text"
-          value={capEx}
+          value={totalDivs}
           onChange={(e) => setTotalDivs(e.target.value)}
         />
       </div>

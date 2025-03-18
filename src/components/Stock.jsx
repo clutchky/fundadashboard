@@ -11,11 +11,19 @@ function Stock() {
   return (
     <div>
       <Link to={-1}>Back</Link>
-      <div>
-        <h1 className="font-primary">{stock.companyName}</h1>
-        <h3 className="font-primary">{stock.tickerSymbol}</h3>
+      <div className="flex justify-between">
+        <div>
+          <h1 className="font-primary">{stock.companyName}</h1>
+          <h3 className="font-primary">{stock.tickerSymbol}</h3>
+        </div>
+        <button
+          className="my-4 px-4 rounded-sm bg-primary py-1"
+          onClick={() => navigate(`/stocks/${stock.id}/new`)}
+        >
+          Add analysis
+        </button>
       </div>
-
+      <span>in Millions</span>
       {/* <StockTable stock={stock} /> */}
       <StockTable stock={stock} />
 
@@ -68,12 +76,6 @@ function Stock() {
           </li>
         ))}
       </div> */}
-      <button
-        className="my-4 px-4 rounded-sm bg-primary py-1"
-        onClick={() => navigate(`/stocks/${stock.id}/new`)}
-      >
-        Add analysis
-      </button>
     </div>
   );
 }

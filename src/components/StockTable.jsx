@@ -39,7 +39,10 @@ function StockTable({ stock }) {
                     : value;
 
                 return (
-                  <td className="border border-gray-300" key={yearIndex}>
+                  <td
+                    className="border border-gray-300 px-2 py-1"
+                    key={yearIndex}
+                  >
                     {displayValue}
                   </td>
                 );
