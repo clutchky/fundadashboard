@@ -18,6 +18,22 @@ export async function getStock(id) {
   return data;
 }
 
+export async function addStock(newData) {
+  // const newStocks = [...stocks, newData];
+
+  const res = await fetch(`${BASE_URL}/stocks`, {
+    method: "POST",
+    body: JSON.stringify(newData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!res.ok) throw Error("Failed adding new stock");
+
+  return res;
+}
+
 export async function addFinancialData(newData, id, stock) {
   const newFinancialData = [...stock.financialData, newData];
 

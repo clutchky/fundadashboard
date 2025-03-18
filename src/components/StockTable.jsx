@@ -1,7 +1,12 @@
 import { metricStrings } from "../ui/utilities";
+import Message from "./Message";
 
 function StockTable({ stock }) {
   const financialData = stock.financialData;
+
+  if (financialData.length === 0) {
+    return <Message message="Add an analysis first!" />;
+  }
 
   const years = financialData.map((stock) => stock.year);
   const metrics = Object.keys(financialData[0]).filter((key) => key !== "year");
